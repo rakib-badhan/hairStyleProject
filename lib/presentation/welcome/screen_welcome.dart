@@ -37,11 +37,69 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
     return Scaffold(
       backgroundColor: MyColors.instance.welcomeBackground,
-      body: Center(
-        child: Image.asset(
-          Images.instance.welcome01,
-          scale: 1,
-        ),
+      body: Stack(
+        children: [
+          // Background Image
+          Center(
+            child: Image.asset(
+              Images.instance.welcome01,
+              scale: 1,
+            ),
+          ),
+          // Texts
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: const [
+                Text(
+                  "Welcome",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 60
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    "Lorem Ipsum is Simply Dummy Text",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Continue Button
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 45.0),
+            child: Align(
+              alignment: AlignmentDirectional.bottomCenter,
+              child: SizedBox(
+                height: 60,
+                width: 250,
+                child: ElevatedButton(
+                    onPressed:()=> _viewmodel?.goToNextScreen(context),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.black),
+                    ),
+                    child: const Text(
+                      "Continue",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22
+                      ),
+                    )
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

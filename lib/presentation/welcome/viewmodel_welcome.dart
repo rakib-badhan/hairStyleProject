@@ -6,15 +6,16 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:hairstylesapp/app/nav.dart';
 import 'package:hairstylesapp/local/local_preference.dart';
-import 'package:hairstylesapp/network/api_repository.dart';
+// import 'package:hairstylesapp/network/api_repository.dart';
+import 'package:hairstylesapp/presentation/introduction/screen_introduction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomeScreenViewModel {
   BuildContext context;
-  ApiRepository? _apiRepository;
+  // ApiRepository? _apiRepository;
 
   WelcomeScreenViewModel(this.context) {
-    _apiRepository = ApiRepository();
+    // _apiRepository = ApiRepository();
   }
 
   Future<bool> getUserLoggedIn() async {
@@ -29,6 +30,11 @@ class WelcomeScreenViewModel {
   Future<String?> getUserToken() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     return pref.getString(LocalPreferenceKeys.PREF_KEY_REMEMBER_TOKEN);
+  }
+  void goToNextScreen(BuildContext context) {
+    if(/*not logged in*/true) {
+      Nav.goToNextScreenDestroyingPrevious(context, IntroductionScreen());
+    }
   }
 
 /*
