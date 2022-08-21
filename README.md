@@ -2,15 +2,16 @@
 
 A new Flutter project for Hair Styles App.
 
-## Getting Started
+# Hair Styles App
 
-This project is a starting point for a Flutter application.
+![](assets/images/bg01.png)
 
-A few resources to get you started if this is your first Flutter project:
+![](assets/images/bg02.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![](assets/images/bg03.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](assets/images/bg04.png)
+
+![](assets/images/bg05.png)
+
+Developer: Shitab Mir (shitabmir@gmail.com)
