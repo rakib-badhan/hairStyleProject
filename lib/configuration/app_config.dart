@@ -17,8 +17,8 @@ class AppConfig {
       variables: {
         "appName": '$appName - Dev',
         "appVersionCode": 'Dev-$appVersionCode',
-        "baseUrl": "http://thebase.com/api/", // todo
-        "applicationId": "edu.smir.straightas.dev",
+        "baseUrl": "https://hairstyle.louidecor.com",
+        "applicationId": "smir.hairstyles.app.hairstylesapp.dev",
         "googleAdsId": "ca-app-pub-... kichu ekta",
 
         "test": "$testing"
@@ -29,8 +29,8 @@ class AppConfig {
       variables: {
         "appName": appName,
         "appVersionCode": appVersionCode,
-        "baseUrl": "http://thebase.com/api/", // todo
-        "applicationId": "edu.smir.straightas.dev",
+        "baseUrl": "https://hairstyle.louidecor.com",
+        "applicationId": "smir.hairstyles.app.hairstylesapp",
         "googleAdsId": "ca-app-pub-... kichu ekta",
 
         "test": "$testing"

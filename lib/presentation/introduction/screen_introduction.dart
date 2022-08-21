@@ -92,27 +92,30 @@ class IntroductionScreenState extends State<IntroductionScreen> with SingleTicke
 
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
-                        child: ElevatedButton(
-                            onPressed:()=> _viewmodel?.goToNextScreen(context),
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(Colors.black),
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(18.0),
-                                        side: const BorderSide(color: Colors.black)
-                                    )
-                                )
-                            ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                "Get Started",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24
-                                ),
+                        child: Visibility(
+                          visible: (tabController?.index == tabController!.length-1),
+                          child: ElevatedButton(
+                              onPressed:()=> _viewmodel?.goToNextScreen(context),
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(Colors.black),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(18.0),
+                                          side: const BorderSide(color: Colors.black)
+                                      )
+                                  )
                               ),
-                            )
+                              child: const Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Text(
+                                  "Get Started",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24
+                                  ),
+                                ),
+                              )
+                          ),
                         ),
                       ),
                     ],
