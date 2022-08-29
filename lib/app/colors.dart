@@ -18,6 +18,7 @@ class MyColors {
   // Color brandColor = const Color(0xFF00838F);
 
   Color welcomeBackground = const Color(0xFFF9F4F3);
+  Color buttonColor = const Color(0xFF131313);
 
 
 }

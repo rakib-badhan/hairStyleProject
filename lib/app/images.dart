@@ -11,5 +11,6 @@ class Images {
   String intro01 = 'assets/images/bg03.png';
   String intro02 = 'assets/images/bg04.png';
   String intro03 = 'assets/images/bg05.png';
+  String login01 = 'assets/images/ic01.png';
 
 }

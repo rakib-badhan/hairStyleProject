@@ -3,6 +3,8 @@
     shitabmir@gmail.com
  */
 import 'package:flutter/cupertino.dart';
+import 'package:hairstylesapp/app/nav.dart';
+import 'package:hairstylesapp/presentation/login/screen_login.dart';
 // import 'package:hairstylesapp/network/api_repository.dart';
 
 class IntroductionScreenViewModel {
@@ -14,7 +16,8 @@ class IntroductionScreenViewModel {
   }
 
   void goToNextScreen(BuildContext context) {
-    // SHITAB TODO
+    Nav.goToNextScreenDestroyingPrevious(context, LoginScreen());
+
   }
 
 }
