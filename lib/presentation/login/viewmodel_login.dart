@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hairstylesapp/app/nav.dart';
 import 'package:hairstylesapp/presentation/homepage/screen_homepage.dart';
 import 'package:hairstylesapp/presentation/login/response_login.dart';
+import 'package:hairstylesapp/presentation/signup/screen_signup.dart';
 
 class LoginScreenViewModel {
   BuildContext context;
@@ -49,14 +50,13 @@ class LoginScreenViewModel {
 
   }
 
-  void goToForgotPasswordScreen(BuildContext context) {
+  void goToForgotPasswordScreen() {
     // Nav.goToNextScreenDestroyingPrevious(context, LoginScreen());
 
   }
 
-  void goToSignUpScreen(BuildContext context) {
-    // Nav.goToNextScreenDestroyingPrevious(context, LoginScreen());
-
+  void goToSignUpScreen() {
+    Nav.goToNextScreen(context, const SignUpScreen(), null);
   }
 
   Map<String, dynamic> _getMappedDynamicData(String email, String password) {

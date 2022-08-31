@@ -79,34 +79,7 @@ class LoginScreenState extends State<LoginScreen> {
                 _getPasswordField(),
                 // Buttons
                 _getLoginButton(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical:20, horizontal: 20),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      TextButton(
-                          onPressed: _signup,
-                          child: const Text(
-                            "Sign up",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 14
-                            ),
-                          )
-                      ),
-                      TextButton(
-                          onPressed: _forgotPassword,
-                          child: const Text(
-                            "Forgot Password?",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 14
-                            ),
-                          )
-                      )
-                    ],
-                  ),
-                )
+                _signUpAndForgetPassword(),
               ],
             ),
           ),
@@ -116,50 +89,55 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _getEmailField() {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
-      child: TextFormField(
-        controller: _emailController,
-        keyboardType: TextInputType.emailAddress,
-        /*style: TextStyle(
-          color: AppColors.instance.blueTextColor,
-        ),*/
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(),
-          hintText: 'Email',
+      child: Container(
+        color: Colors.white,
+        child: TextFormField(
+          controller: _emailController,
+          keyboardType: TextInputType.emailAddress,
+          /*style: TextStyle(
+            color: AppColors.instance.blueTextColor,
+          ),*/
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'Email',
+          ),
         ),
       ),
     );
   }
 
   Widget _getPasswordField() {
-    return Container(
-      padding: const EdgeInsets.only(
-          left: 20, right: 20, top: 20, bottom: 30),
-      child: TextFormField(
-        controller: _passwordController,
-        keyboardType: TextInputType.text,
-        obscureText: !_passwordVisible.value,
-        obscuringCharacter: '*',
-        /*style: TextStyle(
-          color: AppColors.instance.blueTextColor,
-        ),*/
-        decoration: InputDecoration(
-          border: const OutlineInputBorder(),
-          hintText: 'Password',
-          suffixIcon: IconButton(
-            icon: Icon(
-              _passwordVisible.value
-                  ? Icons.visibility
-                  : Icons.visibility_off,
-              // color: AppColors.instance.blueTextColor,
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+      child: Container(
+        color: Colors.white,
+        child: TextFormField(
+          controller: _passwordController,
+          keyboardType: TextInputType.text,
+          obscureText: !_passwordVisible.value,
+          obscuringCharacter: '*',
+          /*style: TextStyle(
+            color: AppColors.instance.blueTextColor,
+          ),*/
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            hintText: 'Password',
+            suffixIcon: IconButton(
+              icon: Icon(
+                _passwordVisible.value
+                    ? Icons.visibility
+                    : Icons.visibility_off,
+                // color: AppColors.instance.blueTextColor,
+              ),
+              onPressed: () {
+                // CommonUtil.instance.hideKeyboard(context);
+                _passwordVisible.value = !_passwordVisible.value;
+              },
             ),
-            onPressed: () {
-              // CommonUtil.instance.hideKeyboard(context);
-              _passwordVisible.value = !_passwordVisible.value;
-            },
-          ),
 
+          ),
         ),
       ),
     );
@@ -189,6 +167,38 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget _signUpAndForgetPassword() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical:20, horizontal: 20),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          TextButton(
+              onPressed: _signup,
+              child: const Text(
+                "Sign up",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 14
+                ),
+              )
+          ),
+          TextButton(
+              onPressed: _forgotPassword,
+              child: const Text(
+                "Forgot Password?",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 14
+                ),
+              )
+          )
+        ],
+      ),
+    );
+
+  }
+
   void _login() {
     _viewModel?.loginButtonPress(_emailController.text.toString(), _passwordController.text.toString());
   }
@@ -200,5 +210,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   void _signup() {
     // SHITAB TODO
+    _viewModel?.goToSignUpScreen();
   }
+
 }
