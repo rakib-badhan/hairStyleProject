@@ -8,6 +8,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hairstylesapp/app/colors.dart';
 import 'package:hairstylesapp/app/images.dart';
+import 'package:hairstylesapp/app/util.dart';
+import 'package:hairstylesapp/presentation/signup/viewmodel_signup.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -19,25 +21,29 @@ class SignUpScreen extends StatefulWidget {
 
 class SignUpScreenState extends State<SignUpScreen> {
 
+  TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController =  TextEditingController();
   ValueNotifier _passwordVisible = ValueNotifier(false);
   final List<String> _genderList = ["Male", "Female", "Others"];
   String _genderDropdownValue = "Select Gender";
 
+  SignupScreenViewModel? _viewModel;
+
   @override
   void initState() {
     super.initState();
-    // _viewModel = SignUpScreenViewModel(context);
+    _viewModel = SignupScreenViewModel(context);
   }
 
   @override
   void dispose() {
     _passwordController.dispose();
+    _nameController.dispose();
     _emailController.dispose();
     _passwordVisible.dispose();
     EasyLoading.dismiss();
-    // _viewModel = null;
+    _viewModel = null;
     super.dispose();
   }
   @override
@@ -59,29 +65,32 @@ class SignUpScreenState extends State<SignUpScreen> {
 
               // Body
               Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
 
-                    // Image
-                    SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Image.asset(
-                        Images.instance.login01,
-                        scale: 2,
+                      // Image
+                      SizedBox(
+                        width: 60,
+                        height: 60,
+                        child: Image.asset(
+                          Images.instance.login01,
+                          scale: 2,
+                        ),
                       ),
-                    ),
 
-                    // Fields
-                    _getEmailField(),
-                    _getPasswordField(),
-                    _getGenderDropdown(),
-                    // Buttons
-                    _getLoginButton(),
-                  ],
+                      // Fields
+                      _getNameField(),
+                      _getEmailField(),
+                      _getPasswordField(),
+                      _getGenderDropdown(),
+                      // Buttons
+                      _getSignUpButton(),
+                    ],
+                  ),
                 ),
               ),
 
@@ -90,9 +99,29 @@ class SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget _getEmailField() {
+  Widget _getNameField() {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
+      child: Container(
+        color: Colors.white,
+        child: TextFormField(
+          controller: _nameController,
+          keyboardType: TextInputType.name,
+          /*style: TextStyle(
+            color: AppColors.instance.blueTextColor,
+          ),*/
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'Name',
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _getEmailField() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Container(
         color: Colors.white,
         child: TextFormField(
@@ -145,7 +174,7 @@ class SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget _getLoginButton() {
+  Widget _getSignUpButton() {
     return Padding(
       padding: const EdgeInsets.only(
           left: 20, right: 20, top: 20, bottom: 30),
@@ -236,6 +265,13 @@ class SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _signup() {
+    if (_passwordController.text.length > 6) {
+      _viewModel?.signupButtonPress(
+          _nameController.text.toString(), _emailController.text.toString(),
+          _passwordController.text.toString(), _genderDropdownValue);
+    } else {
+      CommonUtil.instance.showToast(context, "The password must be at least 6 characters.");
+    }
   }
 
   _selectedGender(String value) {

@@ -35,14 +35,17 @@ class LoginScreenViewModel {
   }
 
   void _loginCall(Map<String, dynamic> data) {
+    CommonUtil.instance.showLoading();
     _apiRepository?.postLogIn(context, data,
         onSuccess: (LoginResponse response) {
+          CommonUtil.instance.stopLoading();
           if(response.success != null && response.success == true && response.token != null) {
             Nav.goToNextScreenDestroyingPrevious(context, const HomepageScreen());
           }
 
         },
       onFailure: (String error) {
+        CommonUtil.instance.stopLoading();
         CommonUtil.instance.onFailed(error);
       }
     );

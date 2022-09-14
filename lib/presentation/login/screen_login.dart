@@ -58,29 +58,31 @@ class LoginScreenState extends State<LoginScreen> {
 
           // Body
           Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
 
-                // Image
-                SizedBox(
-                  width: 60,
-                  height: 60,
-                  child: Image.asset(
-                    Images.instance.login01,
-                    scale: 2,
+                  // Image
+                  SizedBox(
+                    width: 60,
+                    height: 60,
+                    child: Image.asset(
+                      Images.instance.login01,
+                      scale: 2,
+                    ),
                   ),
-                ),
 
-                // Fields
-                _getEmailField(),
-                _getPasswordField(),
-                // Buttons
-                _getLoginButton(),
-                _signUpAndForgetPassword(),
-              ],
+                  // Fields
+                  _getEmailField(),
+                  _getPasswordField(),
+                  // Buttons
+                  _getLoginButton(),
+                  _signUpAndForgetPassword(),
+                ],
+              ),
             ),
           ),
         ],
@@ -209,7 +211,6 @@ class LoginScreenState extends State<LoginScreen> {
 
 
   void _signup() {
-    // SHITAB TODO
     _viewModel?.goToSignUpScreen();
   }
 
